@@ -11,17 +11,19 @@ streamingList = {
     
 }
 
-function descript() 
-    return {title = "Local TV & Radio" ; 
-            version = "0.0.1" ; 
+function descriptor() 
+    return {
+	    title = "Local TV & Radio" ; 
+            version = "1.0.0" ; 
             author = "Conor Keegan and Christos Alexiou" ; 
             myurl = "http://conor.net"; 
             shortdesc = "Stream live TV and Radio from local sources"
-            capabalilties = {}
+	    description = "Stream live TV and Radio from local sources"
+            capabililties = {"menu"}
         }
 end
 
-function activ() 
+function activate() 
     dialog = vlc.dialog("Local TV & Radio") 
     list = dialog:add_list(1,3,4,1) 
     play_button = dialog:add_button("Play", click_play, 1, 4, 4, 1)
@@ -30,7 +32,7 @@ function activ()
         list:add_value(details.name, idx) 
     end 
 
-    dialog:show() 
+    dialog.show() 
 end 
 
 function click_play() 
@@ -50,11 +52,11 @@ function click_play()
 
 end
 
-function deact() 
+function deactivate() 
 end 
 
 function close()
-    vlc.deact() 
+    vlc.deactivate() 
 end 
 
 

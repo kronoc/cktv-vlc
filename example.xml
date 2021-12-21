@@ -1,0 +1,12 @@
+<directory>
+	<entry>
+		<server_name>stream</server_name>
+		<server_type>audio/mpeg</server_type>
+		<bitrate>128</bitrate>
+		<samplerate>0</samplerate>
+		<channels>0</channels>
+		<listen_url>http://URL/live</listen_url>
+		<current_song>Live Radio</current_song>
+		<genre>Various</genre>
+	</entry>
+</directory>
