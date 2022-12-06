@@ -8,6 +8,7 @@ streamingList = {
     {name = "TV", url = "http://192.168.1.3/iptv/cktv.m3u"}, 
     {name = "BBC Only", url = "http://192.168.1.3/iptv/bbc.m3u"}, 
     {name = "RTE Only", url = "http://192.168.1.3/iptv/rte.m3u"}, 
+    {name = "Christmas", url = "http://192.168.1.3/iptv/christmas.m3u"},
     
 }
 
