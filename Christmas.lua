@@ -32,7 +32,7 @@ function lazy_load()
 end
 
 function descriptor()
-    return { title="CK TV" }
+    return { title="Christmas" }
 end
 
 function dropnil(s)
@@ -41,7 +41,7 @@ end
 
 function main()
     lazy_load()
-    local tree = simplexml.parse_url("http://volta.local/iptv/xml/tv.xml")
+    local tree = simplexml.parse_url("http://volta.local/iptv/xml/christmas.xml")
     for _, station in ipairs( tree.children ) do
         simplexml.add_name_maps( station )
         local station_name = station.children_map["server_name"][1].children[1]

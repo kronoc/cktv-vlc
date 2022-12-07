@@ -32,7 +32,7 @@ function lazy_load()
 end
 
 function descriptor()
-    return { title="CK Radio Directory" }
+    return { title="CK Radio" }
 end
 
 function dropnil(s)
@@ -41,25 +41,20 @@ end
 
 function main()
     lazy_load()
-    local tree = simplexml.parse_url("http://volta.local/iptv/radio.xml")
+    local tree = simplexml.parse_url("http://volta.local/iptv/xml/radio.xml")
     for _, station in ipairs( tree.children ) do
         simplexml.add_name_maps( station )
         local station_name = station.children_map["server_name"][1].children[1]
         if station_name == "Unspecified name" or station_name == "" or station_name == nil
         then
                 station_name = station.children_map["listen_url"][1].children[1]
-                if station_name and string.find( station_name, "radionomy.com" )
-                then
-                        station_name = string.match( station_name, "([^/]+)$")
-                        station_name = string.gsub( station_name, "-", " " )
-                end
         end
         vlc.sd.add_item( {path=station.children_map["listen_url"][1].children[1],
                           title=station_name,
                           genre=dropnil(station.children_map["genre"][1].children[1]),
                           nowplaying=dropnil(station.children_map["current_song"][1].children[1]),
                           meta={
-                                  ["Listing Source"]="dir.conor.net",
+                                  ["Listing Source"]="CKIPTV",
                                   ["Listing Type"]="radio",
                                   ["Icecast Bitrate"]=dropnil(station.children_map["bitrate"][1].children[1]),
                                   ["Icecast Server Type"]=dropnil(station.children_map["server_type"][1].children[1])
