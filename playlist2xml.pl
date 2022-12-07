@@ -44,26 +44,30 @@ use Getopt::Long;
 use HTTP::Date;
 use Pod::Usage;
 
-my $sortby = 'natural';
-my($source, $target, $help);
+
+my($source, $target);
 
 GetOptions(
     'source=s'  => \$source,
     'target=s'  => \$target,
-    'sortby=s'  => \$sortby,
-    'help|?'    => \$help,
 );
-pod2usage(0) if($help);
 
-my %sorters = (
-    natural => sub { $_ },
-    name  => sub { $_[0] cmp $_[1] },
-);
-pod2usage({ -message => "source must be a directory", -exitval => 1 }) unless(-f $source);
-pod2usage({ -message => "sortby must be one of [".join(', ', sort keys %sorters)."]", -exitval => 1 })
-    unless(my $sortsub = $sorters{$sortby});
 
 #open source file
+#read m3u file
+
+#read title
+#read url
+my $filename = $source;
+
+open(FH, '<', $filename) or die $!;
+
+while(<FH>){
+   print $_;
+}
+
+close(FH);
+
 
 opendir(SOURCE, $source) || die("Can't read $source\n");
 my @files = grep { -f "$source/$_" && $_ =~ /\.(mp3|m4a|mp4|m4v)$/ } readdir(SOURCE);
@@ -83,7 +87,7 @@ Template->new()->process(
         homepage    => $httpdir,
         description => "The media files from $source",
         pubdate     => time2str(),
-        items       => [ map {
+        iems       => [ map {
             $count++;
             my ($size, $mtime) = (stat($_))[7, 9];
             (my $filename = $_) =~ s/.*\///;
